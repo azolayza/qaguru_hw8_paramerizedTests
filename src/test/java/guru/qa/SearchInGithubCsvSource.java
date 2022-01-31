@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
-
 public class SearchInGithubCsvSource {
 
     static String str;

@@ -16,7 +16,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class SearchContributerWithValueSource {
+public class SearchContributerWithMethodSource {
 
     @BeforeAll
     static void beforeAll() {
@@ -35,17 +35,17 @@ public class SearchContributerWithValueSource {
         );
     }
 
-        @MethodSource("commonSearchTestDataProvider")
-        @ParameterizedTest(name = "Проверка репозиториев на наличие контрибьютеров с тестовыми данными")
-        void searchContributerTest(String repo, String expected){
-        SelenideLogger.addListener("allure", new AllureSelenide());
-        // открыть страничку тестируемого репозитория
-        open(repo);
-        // подвести мышку к первому элементу в области Contributors
-        $$(".Layout-sidebar .BorderGrid-row").find(text("Contributors"))
-                .$$("ul li").first().hover();
-        // check: в появившемся окошке проверяем наличие текст expected1 = Andrei Solntsev
-        $$(".Popover-message").find(visible).shouldHave(text(expected));
-        //Повторить для репозитория Allure и найти Contributer = Dmitry Baev
+    @MethodSource("commonSearchTestDataProvider")
+    @ParameterizedTest(name = "Проверка репозиториев на наличие контрибьютеров с тестовыми данными")
+    void searchContributerTest(String repo, String expected){
+    SelenideLogger.addListener("allure", new AllureSelenide());
+    // открыть страничку тестируемого репозитория
+    open(repo);
+    // подвести мышку к первому элементу в области Contributors
+    $$(".Layout-sidebar .BorderGrid-row").find(text("Contributors"))
+                                        .$$("ul li").first().hover();
+    // check: в появившемся окошке проверяем наличие текст expected1 = Andrei Solntsev
+    $$(".Popover-message").find(visible).shouldHave(text(expected));
+    //Повторить для репозитория Allure и найти Contributer = Dmitry Baev
     }
 }
